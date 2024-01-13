@@ -1,0 +1,12 @@
+[Unit]
+Description = Update Vaultwarden Pod
+After = network-online.target
+Requires = vaultwarden.service
+
+[Timer]
+RandomizedDelaySec = 1h
+OnCalendar = daily
+Persistent = true
+
+[Install]
+WantedBy = timers.target

@@ -1,0 +1,12 @@
+[Unit]
+Description = Keep Pihole's Gravity updated.
+Requires = network-online.target pihole-FTL.service
+
+[Timer]
+User = pihole
+OnCalendar = *-*-* 04,16:45
+RandomizedDelaySec = 5m
+Persistent = true
+
+[Install]
+WantedBy = timers.target

@@ -1,0 +1,13 @@
+# Starship Prompt systemd service
+
+[Unit]
+Description = Starship Prompt Updated
+
+[Service]
+Type = oneshot
+# Check if starship is installed
+ExecStartPre = /bin/bash -c 'starship -V || { echo "Starship not installed"; exit 1; }'
+ExecStart = /usr/local/bin/starship-update
+
+[Install]
+WantedBy = multi-user.target

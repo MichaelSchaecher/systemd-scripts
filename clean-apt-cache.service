@@ -1,0 +1,12 @@
+[Unit]
+Description = Clean up apt cache
+
+[Service]
+Type = oneshot
+Environment = "FALSE='There was no cache to clean'"
+Environment = "TRUE='There was cache to clean'"
+Environment = "APT_CACHE_DIR=/var/cache/apt/archives"
+ExecStart = /bin/bash -c 'test -f "${APT_CACHE_DIR}/*.deb" && { /usr/bin/apt cache ; echo ${TRUE}; } || echo ${FALSE}'
+
+[Install]
+WantedBy = multi-user.target

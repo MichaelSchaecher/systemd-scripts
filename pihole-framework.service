@@ -1,0 +1,12 @@
+# The timer service for Pihole Manager. The systemd script
+# runs the Pihole Manager.
+
+[Unit]
+Description = Keep Pihole's Firmware updated.
+
+[Service]
+ExecStart = /usr/local/bin/pihole -up
+Type = oneshot
+
+[Install]
+WantedBy = multi-user.target

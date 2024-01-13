@@ -1,0 +1,11 @@
+[Unit]
+Description = Update Vaultwarden Pod
+
+[Service]
+Type=oneshot
+ExecStartPre = /usr/bin/systemctl stop vaultwarden
+ExecStart = /usr/bin/podman pull docker://vaultwarden/server:latest
+ExecStartPost = /usr/bin/systemctl start vaultwarden
+
+[Install]
+WantedBy=multi-user.target default.target

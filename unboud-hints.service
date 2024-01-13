@@ -1,0 +1,12 @@
+[Unit]
+Description  =  Update root.hints file for unbound
+After = network.target
+
+[Service]
+Environment = "URL=https://www.internic.net/domain/named.root"
+Environment = "DEST_FILE=/var/lib/unbound/root.hints"
+ExecStart = /usr/bin/curl -sfL -o "${DEST_FILE}" "${URL}"
+ExecStartPost = /bin/systemctl reload unbound.service
+
+[Install]
+WantedBy = default.target

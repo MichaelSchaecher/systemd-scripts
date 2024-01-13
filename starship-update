@@ -1,0 +1,30 @@
+#!/bin/env bash
+
+# Copyright ©️ 2024 Michael Schaecher under the MIT license.
+
+dirURL="https://github.com/starship/starship/releases/latest/download/"
+downloadFile="/tmp/starship.tar.gz"
+
+# Check if the user is root
+test $(id -u) -ne 0 && echo "You must be root to run this script" && exit 1
+
+case "$(uname -m)" in
+    "x86_64"            )   arch="starship-x86_64-unknown-linux-musl.tar.gz"   ;;
+
+    "aarch64"           )   arch="starship-aarch64-unknown-linux-musl.tar.gz "  ;;
+esac
+
+# Download the latest version of starship using curl
+
+curl -sfL -o $downloadFile $dirURL/$arch || { echo "Error: Failed to download file"; exit 1; }
+
+# Extract the tarball
+tar -xvf $downloadFile -C /tmp
+
+# Move the binary to the bin folder
+mv /tmp/starship /usr/local/bin
+
+# Remove the tarball and extracted folder
+rm -rf $downloadFile $extractedFile
+
+exit 0

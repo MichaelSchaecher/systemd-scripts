@@ -1,0 +1,13 @@
+# Timer SystemD script to update starship prompt
+
+[Unit]
+Description = Starship Prompt Updated
+After = apt-daily.timer apt-daily-upgrade.timer
+
+[Timer]
+OnCalendar = daily
+Persistent = true
+RandomizedDelaySec = 1h
+
+[Install]
+WantedBy = timers.target

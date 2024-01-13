@@ -1,0 +1,15 @@
+# Apt is a good package manager for Debian based systems, but it doens't clean
+# up after itself very well. This SystemD Service will clean up the apt cache.
+
+[Unit]
+Description = Clean up apt cache
+After = apt-daily.timer apt-daily-upgrade.timer
+Requires = network.target
+
+[Timer]
+OnCalendar = daily
+RandomizedDelaySec = 30m
+Persistent = true
+
+[Install]
+WantedBy = timers.target

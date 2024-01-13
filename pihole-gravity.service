@@ -1,0 +1,12 @@
+# The timer service for Pihole Manager. The systemd script
+# runs the Pihole Manager.
+
+[Unit]
+Description = Keep Pihole's Gravity updated.
+
+[Service]
+ExecStart = /usr/local/bin/pihole -g
+Type = oneshot
+
+[Install]
+WantedBy = multi-user.target
