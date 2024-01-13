@@ -29,3 +29,5 @@ Installing is easy, just clone the repo and copy the desired scripts to `/usr/li
 For services that rely on the timer do not enable the service since the timer will start the service when it is triggered.
 
 ## [License](COPYING)
+
+This project is licensed under the MIT License - see the [LICENSE](COPYING) file for details.
